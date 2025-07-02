@@ -29,7 +29,7 @@ def menu():
             menu()
 
 def excluir_itens_lista(lista, posicao, valor_item):
-    encontrar_posicao(lista, valor_item, posicao)
+    i = encontrar_posicao(lista, valor_item, posicao)
     del lista[i-2:i+1]
     print('Lista atualizada')
     posicao = 1
