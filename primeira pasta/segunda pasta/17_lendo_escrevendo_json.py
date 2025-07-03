@@ -1,8 +1,9 @@
 import json
-#import sys
-#sys.stdin.reconfigure(encoding="utf-8")
+import sys
+from pathlib import Path
+sys.stdout.reconfigure(encoding="utf-8")
 
-data_json =
+data_json ='''
 {
     "assinantes" : [
       {
@@ -20,3 +21,33 @@ data_json =
       ],
     "data_extração": "2023/08/22"
   }
+'''
+
+
+# Convertendo json para dicionário
+dado_convertido = json.loads(data_json)
+'''
+print(type(data_json))
+print(type(dado_convertido))
+print(dado_convertido)
+'''
+
+# Convertendo novamente para json
+dado_desconvertido = json.dumps(dado_convertido, ensure_ascii=False, indent=3)
+#print(type(dado_convertido))
+#print(type(dado_desconvertido))
+#print(dado_desconvertido)
+
+
+# Lendo arquivos json
+pasta_atual = Path(__file__).parent
+with open(pasta_atual / 'assinantes.json') as f:
+    dado_carregado = json.load(f)
+print(type(dado_carregado))
+print(dado_carregado)
+print(dado_carregado['assinantes'])
+
+
+# Escrevendo arquivos json
+with open(pasta_atual / 'assinantes_copia.json', 'w') as f:
+    json.dump(dado_carregado, f, indent=2, ensure_ascii=False)
